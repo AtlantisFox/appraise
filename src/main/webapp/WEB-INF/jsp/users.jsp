@@ -1,0 +1,189 @@
+<%@ page isELIgnored="false" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>绩效考评</title>
+  <link href="css/common.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SB Admin v2.0</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+      <li><i class="fa fa-user fa-fw"></i> 您好：${username}</li>
+      <li><a href="#"><i class="fa fa-gear fa-fw"></i> 用户设置</a></li>
+      <li><a href="logout.do"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+      <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+          <li><a href="index.do"><i class="fa fa-dashboard fa-fw"></i> 主页</a></li>
+          <li><a href="indexes.html"><i class="fa fa-unlock"></i> 指标管理</a></li>
+          <li><a href="users.do"><i class="fa fa-users"></i> 用户管理</a></li>
+          <li><a href="plans.html"><i class="fa fa-gears"></i> 方案管理</a></li>
+        </ul>
+      </div>
+      <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+  </nav>
+
+  <div id="page-wrapper">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header">用户管理</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="dataTable_wrapper">
+          <table id="dataTables-users" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+              <th>用户名</th>
+              <th>备注</th>
+              <th>考评管理</th>
+              <th>账户管理</th>
+              <th><!-- 修改按钮 --></th>
+              <th><!-- 删除按钮 --></th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>  <!-- Table content -->
+
+    <!-- modal dialog for user detail -->
+    <div class="modal fade" id="user-edit-dlg" tabindex="-1" role="dialog" aria-labelledby="user-edit-label"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="user-edit-label">用户信息</h4>
+          </div>  <!-- modal-header -->
+          <div class="modal-body">
+            <div class="form-horizontal">
+              <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label" for="user-username">用户名</label>
+
+                <div class="col-sm-10">
+                  <p class="form-control-static field-username-static"></p>
+                  <input type="text" class="form-control field-username" id="user-username">
+                  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="user-remark">备注</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control field-remark" id="user-remark">
+                </div>
+              </div>
+              <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label" for="user-password">密码</label>
+
+                <div class="col-sm-10">
+                  <input type="password" class="form-control field-password" id="user-password">
+                  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label" for="user-confirm">确认密码</label>
+
+                <div class="col-sm-10">
+                  <input type="password" class="form-control field-confirm" id="user-confirm">
+                  <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+                  <p class="help-block field-hint-no-passwd">如果不修改密码，请留空。</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="user-appraisal">考评管理</label>
+
+                <div class="col-sm-10">
+                  <input type="checkbox" class="form-control field-appraisal" id="user-appraisal">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="user-account">账户管理</label>
+
+                <div class="col-sm-10">
+                  <input type="checkbox" class="form-control field-account" id="user-account">
+                </div>
+              </div>
+            </div>
+          </div>  <!-- modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary detail-edit-save">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <div class="dlg-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>  <!-- modal dialog for user detail -->
+
+    <!-- modal dialog for deleting user -->
+    <div class="modal fade" id="user-del-dlg" tabindex="-1" role="dialog" aria-labelledby="user-del-label"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="user-del-label">确认删除？</h4>
+          </div>  <!-- modal-header -->
+          <div class="modal-body">
+            <div class="form-horizontal">
+              <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label" for="userdel-username">用户名</label>
+
+                <div class="col-sm-10">
+                  <p class="form-control-static field-name" id="userdel-username"></p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="userdel-remark">备注</label>
+
+                <div class="col-sm-10">
+                  <p class="form-control-static field-remark" id="userdel-remark"></p>
+                </div>
+              </div>
+            </div>
+          </div>  <!-- modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger deldlg-btn">删除</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <div class="dlg-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>  <!-- modal dialog for deleting user -->
+
+  </div>
+</div>
+
+<script type="text/javascript" src="js/require.js" data-main="js/users.js"></script>
+</body>
+
+</html>

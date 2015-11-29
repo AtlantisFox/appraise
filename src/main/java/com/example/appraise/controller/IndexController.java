@@ -1,0 +1,25 @@
+package com.example.appraise.controller;
+
+import com.example.appraise.dao.UserDao;
+import com.example.appraise.dao.UserSecureDao;
+import com.example.appraise.model.ArUser;
+import com.example.appraise.model.ArUserSecure;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
+
+@Controller
+public class IndexController {
+    public static final String REDIRECT_TO_INDEX = "redirect:index.do";
+
+    @RequestMapping("/index")
+    public ModelAndView Index(HttpSession session) {
+        if (! new SessionChecker(session).hasAuthorized()) {
+            return new ModelAndView(LoginController.REDIRECT_TO_LOGIN);
+        }
+        return new ModelAndView("index");
+    }
+}

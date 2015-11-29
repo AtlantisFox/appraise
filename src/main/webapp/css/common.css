@@ -1,0 +1,8 @@
+@import '../vendor/bootstrap/dist/css/bootstrap.css';
+@import '../vendor/metisMenu/dist/metisMenu.css';
+@import '../vendor/datatables.net-bs/css/dataTables.bootstrap.css';
+/*@import '../vendor/datatables.net-responsive-bs/css/responsive.bootstrap.css';*/
+@import '../vendor/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css';
+@import '../vendor/font-awesome/css/font-awesome.css';
+@import '../vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css';
+@import 'sb-admin-2.css';
