@@ -159,7 +159,7 @@
                 <label class="col-sm-2 control-label" for="userdel-username">用户名</label>
 
                 <div class="col-sm-10">
-                  <p class="form-control-static field-name" id="userdel-username"></p>
+                  <p class="form-control-static field-username" id="userdel-username"></p>
                 </div>
               </div>
               <div class="form-group">
@@ -172,7 +172,7 @@
             </div>
           </div>  <!-- modal-body -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger deldlg-btn">删除</button>
+            <button type="button" class="btn btn-danger dlg-btn-confirm">删除</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             <div class="dlg-status"></div>
           </div>

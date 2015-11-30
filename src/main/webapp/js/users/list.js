@@ -99,7 +99,6 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
         }
 
         function load_data() {
-            // TODO: ajax request
             var options = {
                 url: 'api/user/list.do',
                 dataType: 'json',

@@ -1,22 +1,13 @@
-define(['jquery', 'bootstrap'], function ($) {
+define(['jquery', '../common/confirm'], function ($, ConfirmDlg) {
 
     function UserDel(container) {
         var that = this;
-        // private
-        container = $(container);
-        var username = container.find('.field-name');
-        var remark = container.find('.field-remark');
-        var btn_del = container.find('.deldlg-btn');
-        var del_status = container.find('.dlg-status');
-        var deleting_obj = null;
-        var callback = null;
-
-        function _init() {
-            btn_del.on('click', delete_clicked);
-        }
+        var modal = new ConfirmDlg(container);
+        var callback;
+        var deleting_obj;
 
         function delete_clicked() {
-            del_status.text('正在删除...').show();
+            modal.setStatus('正在删除...');
             var options = {
                 url: 'api/user/delete.do',
                 data: {
@@ -30,23 +21,22 @@ define(['jquery', 'bootstrap'], function ($) {
             // setTimeout(delete_ajax_cb, 1000);
         }
 
-        function delete_ajax_cb(data) {
-            container.modal('hide');
+        function delete_ajax_cb() {
+            modal.hide();
             if (callback) {
-                callback(deleting_obj)
+                callback(deleting_obj);
             }
         }
 
-        this.del = function (cb, user) {
-            username.text(user.username);
-            remark.text(user.remark);
-            deleting_obj = user;
+        this.del = function(cb, user) {
             callback = cb;
-            del_status.hide();
-            container.modal();
+            deleting_obj = user;
+            modal.modal({
+                fields: ['username', 'remark'],
+                data: user,
+                confirm_cb: delete_clicked
+            });
         };
-
-        _init();
     }
 
     return UserDel;
