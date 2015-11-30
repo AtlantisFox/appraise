@@ -1,6 +1,6 @@
 define(['jquery', 'bootstrap'], function ($) {
 
-    function ConfirmModal(container) {
+    function ConfirmDialog(container) {
         container = $(container);
         // private
         var that = this;
@@ -66,5 +66,5 @@ define(['jquery', 'bootstrap'], function ($) {
         _init();
     }
 
-    return ConfirmModal;
+    return ConfirmDialog;
 });

@@ -15,7 +15,8 @@ define(['jquery', '../common/confirm'], function ($, ConfirmDlg) {
                 },
                 dataType: 'json',
                 type: 'post',
-                success: delete_ajax_cb
+                success: delete_ajax_cb,
+                error: delete_err_cb
             };
             $.ajax(options);
             // setTimeout(delete_ajax_cb, 1000);
@@ -26,6 +27,13 @@ define(['jquery', '../common/confirm'], function ($, ConfirmDlg) {
             if (callback) {
                 callback(deleting_obj);
             }
+        }
+
+        function delete_err_cb(ajax_obj) {
+            var o = ajax_obj;
+            var txt = o.responseJSON && o.responseJSON.msg || 'unknown';
+            modal.reset();
+            modal.setStatus('错误：' + txt);
         }
 
         this.del = function(cb, user) {

@@ -161,7 +161,7 @@ define(['jquery', './password', 'bootstrap', 'bootstrap-switch'], function ($, U
             container.modal({keyboard: false});
         }
 
-        this.create = function (cb) {
+        this.creat = function (cb) {
             username.show();
             username.val('');
             username_static.hide();

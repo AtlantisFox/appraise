@@ -59,7 +59,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                 .html('<button type="button" class="btn btn-success listitem-add"><i class="fa fa-plus"></i> 添加新用户</button>')
                 .select('button.listitem-add')
                 .click(function () {
-                    userform.create(add_user_cb);
+                    userform.creat(add_user_cb);
                 });
 
             container.on('click', 'td button.listitem-modify', function () {
