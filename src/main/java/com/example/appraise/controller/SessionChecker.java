@@ -19,6 +19,11 @@ public class SessionChecker {
 
     public String getUsername() {
         return this.getUser().getUsername();
+
+        // debug only
+        // ArUserSecure u = getUser();
+        // if (u == null) return "";
+        // return u.getUsername() != null ? u.getUsername() : "";
     }
 
     private ArUserSecure getUser() {
@@ -48,12 +53,14 @@ public class SessionChecker {
     }
 
     public SessionChecker requireAccountAdmin() throws RestApiException {
+        requireAuthorized();
         if (!hasAccountAdmin())
             throw RestApiException.onUnprivileged();
         return this;
     }
 
     public SessionChecker requireAppraisalAdmin() throws RestApiException {
+        requireAuthorized();
         if (!hasAppraisalAdmin())
             throw RestApiException.onUnprivileged();
         return this;
