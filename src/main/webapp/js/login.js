@@ -15,7 +15,6 @@ requirejs(['./common'], function() {
 
         function set_focus() {
             if (username.val()) {
-                // TODO: select all
                 password.focus();
                 password.select();
             } else {
@@ -27,7 +26,7 @@ requirejs(['./common'], function() {
             event.preventDefault();
             submit.prop('disabled', true);
             $.ajax({
-                url: 'api/user/auth.do',
+                url: 'api/user/auth',
                 data: {
                     username: username.val(),
                     password: pwd.hash(password.val())
@@ -43,8 +42,8 @@ requirejs(['./common'], function() {
             console.log('succeed');
             // TODO: verify window.location.pathname available on most platforms
             var pieces = window.location.pathname.split('.');
-            var suffix = pieces.length > 0 ? pieces[pieces.length - 1] : 'html';
-            window.location = 'index.' + suffix;
+            pieces[0] = 'index';
+            window.location = pieces.join('.');
         }
 
         function ajax_err_cb() {

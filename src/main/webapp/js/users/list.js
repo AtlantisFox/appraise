@@ -100,7 +100,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
 
         function load_data() {
             var options = {
-                url: 'api/user/list.do',
+                url: 'api/user/list',
                 dataType: 'json',
                 type: 'post',
                 success: load_succ_cb

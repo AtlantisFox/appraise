@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController {
-    public static final String REDIRECT_TO_INDEX = "redirect:index.do";
+    public static final String REDIRECT_TO_INDEX = "redirect:index";
 
     @RequestMapping("/index")
     public ModelAndView Index(HttpSession session) {

@@ -9,7 +9,7 @@ define(['jquery', '../common/confirm'], function ($, ConfirmDlg) {
         function delete_clicked() {
             modal.setStatus('正在删除...');
             var options = {
-                url: 'api/user/delete.do',
+                url: 'api/user/delete',
                 data: {
                     username: deleting_obj.username
                 },

@@ -126,7 +126,7 @@ define(['jquery', './password', 'bootstrap', 'bootstrap-switch'], function ($, U
             btn_save.prop('disabled', true);
             saving_status.text('正在保存...').show();
             var options = {
-                url: mode_create ? 'api/user/create.do' : 'api/user/update.do',
+                url: mode_create ? 'api/user/create' : 'api/user/update',
                 data: that.serialize(),
                 dataType: 'json',
                 type: 'post',

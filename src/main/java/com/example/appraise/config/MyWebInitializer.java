@@ -24,6 +24,6 @@ public class MyWebInitializer implements WebApplicationInitializer {
         // PS: 加载需要不少时间（~10秒）
         dispatcher.setLoadOnStartup(1);
         // 符合下面规则的URL，会由Servlet处理。
-        dispatcher.addMapping("*.do");
+        dispatcher.addMapping("/");
     }
 }
