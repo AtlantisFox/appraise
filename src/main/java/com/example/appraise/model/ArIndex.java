@@ -71,8 +71,10 @@ public class ArIndex {
         if (id != arIndex.id) return false;
         if (point != arIndex.point) return false;
         if (appraiser != arIndex.appraiser) return false;
-        if (name != null ? !name.equals(arIndex.name) : arIndex.name != null) return false;
-        if (remark != null ? !remark.equals(arIndex.remark) : arIndex.remark != null) return false;
+        if (name != null ? !name.equals(arIndex.name) : arIndex.name != null)
+            return false;
+        if (remark != null ? !remark.equals(arIndex.remark) : arIndex.remark != null)
+            return false;
 
         return true;
     }
