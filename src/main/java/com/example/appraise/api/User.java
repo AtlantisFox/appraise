@@ -20,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/api/user")
-public class User {
+public class User extends BaseRestApiController {
     @Autowired
     private UserSecureDao userSecureDao;
 
@@ -74,7 +74,7 @@ public class User {
             throw RestApiException.onInvalidParam("password is null/empty");
 
         try {
-            userSecureDao.persist(user);
+            userSecureDao.save(user);
         } catch (DataIntegrityViolationException e) {
             // 数据库保存失败，原因只有用户名重复/主键冲突
             throw RestApiException.onInvalidParam("duplicated username");
