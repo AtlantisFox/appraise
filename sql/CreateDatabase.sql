@@ -30,6 +30,7 @@ CREATE TABLE `index` (
   `remark` text,
   `point` int(11) NOT NULL,
   `appraiser` varchar(20) NOT NULL,
+  `appraisee` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
