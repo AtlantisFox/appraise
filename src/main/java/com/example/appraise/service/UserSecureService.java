@@ -73,7 +73,12 @@ public class UserSecureService {
         return oldUser;
     }
 
+    @Transactional(readOnly = true)
     public List<ArUserSecure> findAll() {
-        return userSecureDao.findAll();
+        List<ArUserSecure> list = userSecureDao.findAll();
+        for (ArUserSecure user : list) {
+            user.setPassword("");
+        }
+        return list;
     }
 }

@@ -146,12 +146,7 @@ public class User extends BaseRestApiController {
 
         if (sessionChecker.hasAccountAdmin()) {
             // 管理员
-            List<ArUserSecure> result = userSecureService.findAll();
-            // 抹除密码。这段代码不能放在xxx里，因为xxx有@Transactional，在DAO中做的修改，在离开xxx前，会自动commit到数据库中。
-            for (ArUserSecure user : result) {
-                user.setPassword("");
-            }
-            return result;
+            return userSecureService.findAll();
         } else {
             // 普通用户
             return userService.findAll();
