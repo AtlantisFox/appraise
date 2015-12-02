@@ -71,8 +71,10 @@ public class ArPlan {
         if (id != arPlan.id) return false;
         if (deadline != arPlan.deadline) return false;
         if (status != arPlan.status) return false;
-        if (name != null ? !name.equals(arPlan.name) : arPlan.name != null) return false;
-        if (remark != null ? !remark.equals(arPlan.remark) : arPlan.remark != null) return false;
+        if (name != null ? !name.equals(arPlan.name) : arPlan.name != null)
+            return false;
+        if (remark != null ? !remark.equals(arPlan.remark) : arPlan.remark != null)
+            return false;
 
         return true;
     }

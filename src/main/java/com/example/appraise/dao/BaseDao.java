@@ -8,18 +8,23 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+/**
+ * 泛型DAO
+ * 抄自http://1194867672-qq-com.iteye.com/blog/1159918。
+ *
+ * @param <T> 持久化对象的类型
+ */
 @SuppressWarnings("unchecked")
 public abstract class BaseDao<T> {
-    // http://1194867672-qq-com.iteye.com/blog/1159918
+    @Autowired
+    SessionFactory sessionFactory;
+
     private Class<T> clazz;
 
     public BaseDao() {
         ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
         clazz = (Class<T>) type.getActualTypeArguments()[0];
     }
-
-    @Autowired
-    SessionFactory sessionFactory;
 
     protected Session getSession() {
         return sessionFactory.getCurrentSession();

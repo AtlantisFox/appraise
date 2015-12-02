@@ -10,18 +10,11 @@ import java.security.SecureRandom;
  */
 public class SessionChap {
     private static final String SESSION_ATTR = "$SecureChallenge$";
-    private final HttpSession session;
     private static final SecureRandom random = new SecureRandom();
+    private final HttpSession session;
 
     public SessionChap(HttpSession session) {
         this.session = session;
-    }
-
-    public boolean check(ArUserSecure user, String password) {
-        byte[] challenge = (byte[]) session.getAttribute(SESSION_ATTR);
-        if (challenge == null)
-            return false;
-        return true;
     }
 
     private static String byteToHex(byte[] bytes) {
@@ -29,10 +22,17 @@ public class SessionChap {
         char[] hexChars = new char[bytes.length * 2];
         for (int i = 0; i < bytes.length; i++) {
             int v = bytes[i];
-            hexChars[i*2] = hexArray[v >>> 4];
-            hexChars[i*2+1] = hexArray[v & 0xf];
+            hexChars[i * 2] = hexArray[v >>> 4];
+            hexChars[i * 2 + 1] = hexArray[v & 0xf];
         }
         return new String(hexChars);
+    }
+
+    public boolean check(ArUserSecure user, String password) {
+        byte[] challenge = (byte[]) session.getAttribute(SESSION_ATTR);
+        if (challenge == null)
+            return false;
+        return true;
     }
 
     public String generateChallenge() {

@@ -11,7 +11,7 @@ public class UserController {
     @RequestMapping("/users")
     public ModelAndView Users(HttpSession session) {
         SessionChecker sessionChecker = new SessionChecker(session);
-        if (! sessionChecker.hasAuthorized()) {
+        if (!sessionChecker.hasAuthorized()) {
             return new ModelAndView(LoginController.REDIRECT_TO_LOGIN);
         }
         if (!sessionChecker.hasAccountAdmin()) {

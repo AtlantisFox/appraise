@@ -1,16 +1,12 @@
 package com.example.appraise.api;
 
 import com.example.appraise.controller.SessionChecker;
-import com.example.appraise.dao.UserDao;
-import com.example.appraise.dao.UserSecureDao;
 import com.example.appraise.model.ArUser;
 import com.example.appraise.model.ArUserSecure;
 import com.example.appraise.service.UserSecureService;
 import com.example.appraise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,8 +74,7 @@ public class User extends BaseRestApiController {
     }
 
     /**
-     * 更新用户数据
-     * <p/>
+     * 更新用户数据。
      * 可以是1)普通用户修改自己的备注/密码；也可以是2)管理员修改任意用户备注/密码/权限。
      *
      * @param newUser 更改后用户的数据

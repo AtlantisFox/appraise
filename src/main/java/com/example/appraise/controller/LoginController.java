@@ -14,7 +14,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView Login(HttpSession session) {
-        if (! new SessionChecker(session).hasAuthorized()) {
+        if (!new SessionChecker(session).hasAuthorized()) {
             return new ModelAndView("login");
         } else {
             return new ModelAndView("redirect:index");
