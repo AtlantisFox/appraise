@@ -10,6 +10,7 @@ public class ArIndex {
     private String remark;
     private int point;
     private String appraiser;
+    private String appraisee;
 
     @Id
     @Column(name = "id")
@@ -61,6 +62,16 @@ public class ArIndex {
         this.appraiser = appraiser;
     }
 
+    @Basic
+    @Column(name = "appraisee")
+    public String getAppraisee() {
+        return appraisee;
+    }
+
+    public void setAppraisee(String appraisee) {
+        this.appraisee = appraisee;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -76,6 +87,8 @@ public class ArIndex {
             return false;
         if (appraiser != null ? !appraiser.equals(arIndex.appraiser) : arIndex.appraiser != null)
             return false;
+        if (appraisee != null ? !appraisee.equals(arIndex.appraisee) : arIndex.appraisee != null)
+            return false;
 
         return true;
     }
@@ -87,6 +100,7 @@ public class ArIndex {
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
         result = 31 * result + point;
         result = 31 * result + (appraiser != null ? appraiser.hashCode() : 0);
+        result = 31 * result + (appraisee != null ? appraisee.hashCode() : 0);
         return result;
     }
 }
