@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 public abstract class BaseDao<T> {
@@ -38,5 +39,9 @@ public abstract class BaseDao<T> {
 
     public T findById(Serializable id) {
         return (T) this.getSession().get(this.clazz, id);
+    }
+
+    public List<T> findAll() {
+        return this.getSession().createCriteria(this.clazz).list();
     }
 }

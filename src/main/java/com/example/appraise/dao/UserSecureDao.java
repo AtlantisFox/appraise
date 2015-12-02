@@ -7,8 +7,4 @@ import java.util.List;
 
 @Repository
 public class UserSecureDao extends BaseDao<ArUserSecure> {
-    @SuppressWarnings("unchecked")
-    public List<ArUserSecure> findAll() {
-        return getSession().createQuery("from ArUserSecure order by username").list();
-    }
 }
