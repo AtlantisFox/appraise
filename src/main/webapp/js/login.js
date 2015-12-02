@@ -1,19 +1,19 @@
 requirejs(['./common'], function() {
     requirejs(['jquery', './users/password'], function($, pwd) {
         var container = $('#form-login');
-        var banner = container.find('.detail-banner');
-        var username = container.find('.detail-username');
-        var password = container.find('.detail-password');
-        var submit = container.find('.detail-login');
+        var banner = container.find('.dlg-banner');
+        var username = container.find('.field-username');
+        var password = container.find('.field-password');
+        var submit = container.find('.dlg-login');
 
         function _init() {
             banner.hide();
-            submit.click(do_login);
+            submit.click(doLogin);
             submit.prop('disabled', false);
-            set_focus();
+            setFocus();
         }
 
-        function set_focus() {
+        function setFocus() {
             if (username.val()) {
                 password.focus();
                 password.select();
@@ -22,7 +22,7 @@ requirejs(['./common'], function() {
             }
         }
 
-        function do_login(event) {
+        function doLogin(event) {
             event.preventDefault();
             submit.prop('disabled', true);
             $.ajax({
@@ -49,7 +49,7 @@ requirejs(['./common'], function() {
         function ajax_err_cb() {
             console.log(arguments);
             banner.show();
-            set_focus();
+            setFocus();
             submit.prop('disabled', false);
         }
 

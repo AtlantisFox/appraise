@@ -21,14 +21,14 @@
             <h3 class="panel-title">Please Sign In</h3>
           </div>
           <div class="panel-body" id="form-login">
-            <div class="alert alert-warning detail-banner" style="display: none;">登陆失败，请重试。</div>
+            <div class="alert alert-warning dlg-banner" style="display: none;">登陆失败，请重试。</div>
             <form role="form">
               <fieldset>
                 <div class="form-group">
-                  <input class="form-control detail-username" placeholder="Username" name="username" type="text" value="${username}" autofocus>
+                  <input class="form-control field-username" placeholder="Username" name="username" type="text" value="${username}">
                 </div>
                 <div class="form-group">
-                  <input class="form-control detail-password" placeholder="Password" name="password" type="password" value="">
+                  <input class="form-control field-password" placeholder="Password" name="password" type="password" value="">
                 </div>
                 <!--
                 <div class="checkbox">
@@ -38,7 +38,7 @@
                 </div>
                 -->
                 <!-- Change this to a button or input when using this as a form -->
-                <button type="submit" class="btn btn-lg btn-success btn-block detail-login">Login</button>
+                <button type="submit" class="btn btn-lg btn-success btn-block dlg-login">Login</button>
               </fieldset>
             </form>
           </div>
