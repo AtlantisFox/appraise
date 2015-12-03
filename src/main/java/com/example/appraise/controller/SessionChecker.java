@@ -35,15 +35,15 @@ public class SessionChecker {
     }
 
     public boolean hasAuthorized() {
-        return true || this.getUser() != null;
+        return this.getUser() != null;
     }
 
     public boolean hasAccountAdmin() {
-        return true || hasAuthorized() && this.getUser().getIsAccountAdmin() != 0;
+        return hasAuthorized() && this.getUser().getIsAccountAdmin() != 0;
     }
 
     public boolean hasAppraisalAdmin() {
-        return true || hasAuthorized() && this.getUser().getIsAppraisalAdmin() != 0;
+        return hasAuthorized() && this.getUser().getIsAppraisalAdmin() != 0;
     }
 
     public SessionChecker requireAuthorized() throws RestApiException {
