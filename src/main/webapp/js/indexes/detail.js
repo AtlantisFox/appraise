@@ -46,15 +46,29 @@ define(['jquery', 'bootstrap'], function ($) {
 
         function save_clicked() {
             saving_status.text('正在保存...').show();
-            // TODO: ajax save
-            setTimeout(save_ajax_cb, 1000);
+            var options = {
+                url: mode_create ? 'api/index/create' : 'api/index/update',
+                data: that.serialize(),
+                dataType: 'json',
+                type: 'post',
+                success: save_ajax_cb,
+                error: save_err_cb
+            };
+            $.ajax(options);
+            // setTimeout(save_ajax_cb, 1000);
         }
 
         function save_ajax_cb(data) {
             container.modal('hide');
-            // TODO: return response data
             if (callback)
-                callback(that.serialize());
+                callback(data);
+        }
+
+        function save_err_cb(ajax_obj) {
+            btn_save.prop('disabled', false);
+            var o = ajax_obj;
+            var txt = o.responseJSON && o.responseJSON.msg || 'unknown';
+            saving_status.text('错误：' + txt);
         }
 
         var defaults = {

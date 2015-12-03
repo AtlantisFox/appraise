@@ -102,15 +102,22 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
         }
 
         function load_data() {
-            // TODO: ajax request
-            require(['sample_data'], function (data) {
-                var sample = {
-                    users: data.users,
-                    indexes: data.indexes,
-                    usedIndexes: data.usedIndexes
-                };
-                load_succ_cb(sample);
-            });
+            var options = {
+                url: 'api/batch',
+                data: {users: 1, indexes: 1, usedIndexes: 1},
+                dataType: 'json',
+                type: 'post',
+                success: load_succ_cb
+            };
+            $.ajax(options);
+            //require(['sample_data'], function (data) {
+            //    var sample = {
+            //        users: data.users,
+            //        indexes: data.indexes,
+            //        usedIndexes: data.usedIndexes
+            //    };
+            //    load_succ_cb(sample);
+            //});
         }
 
         function load_succ_cb(data) {
