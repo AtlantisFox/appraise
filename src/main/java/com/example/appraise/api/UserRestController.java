@@ -1,8 +1,9 @@
 package com.example.appraise.api;
 
-import com.example.appraise.controller.SessionChecker;
 import com.example.appraise.model.ArUser;
 import com.example.appraise.model.ArUserSecure;
+import com.example.appraise.service.SessionChecker;
+import com.example.appraise.service.SessionService;
 import com.example.appraise.service.UserSecureService;
 import com.example.appraise.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UserRestController extends BaseRestApiController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SessionService sessionService;
+
     /**
      * 处理用户登录请求
      *
@@ -43,7 +47,7 @@ public class UserRestController extends BaseRestApiController {
         // 用户身份验证
         ArUserSecure user = userSecureService.auth(username, password);
         if (user != null) {
-            new SessionChecker(session).setUser(user);
+            sessionService.set(session, user);
             return user.toArUser();
         }
         throw RestApiException.onUnauthorized();
@@ -62,7 +66,7 @@ public class UserRestController extends BaseRestApiController {
         // taken from: http://stackoverflow.com/a/16942352
 
         // 必须管理员
-        new SessionChecker(session).requireAccountAdmin();
+        sessionService.get(session).requireAccountAdmin();
         // 验证输入有效
         if (user.getUsername() == null || user.getUsername().isEmpty())
             throw RestApiException.onInvalidParam("username is null/empty");
@@ -87,7 +91,7 @@ public class UserRestController extends BaseRestApiController {
         ArUserSecure oldUser;
 
         // 首先，用户必须登陆。
-        SessionChecker sessionChecker = new SessionChecker(session);
+        SessionChecker sessionChecker = sessionService.get(session);
         sessionChecker.requireAuthorized();
 
         // TODO: 12/1/2015 验证密码有效
@@ -115,7 +119,7 @@ public class UserRestController extends BaseRestApiController {
     public ArUser delete(@RequestParam("username") String username,
                          HttpSession session) throws RestApiException {
         // 首先，只有管理员有权限删除用户。
-        SessionChecker sessionChecker = new SessionChecker(session);
+        SessionChecker sessionChecker = sessionService.get(session);
         sessionChecker.requireAccountAdmin();
 
         // 不能删除自己
@@ -136,7 +140,7 @@ public class UserRestController extends BaseRestApiController {
     @RequestMapping(value = "list")
     public List list(HttpSession session) throws RestApiException {
         // 判断当前登录用户
-        SessionChecker sessionChecker = new SessionChecker(session);
+        SessionChecker sessionChecker = sessionService.get(session);
         sessionChecker.requireAuthorized();
 
         if (sessionChecker.hasAccountAdmin()) {
@@ -158,7 +162,7 @@ public class UserRestController extends BaseRestApiController {
      */
     @RequestMapping(value = "exist")
     public boolean exist(@RequestParam("username") String username, HttpSession session) throws RestApiException {
-        new SessionChecker(session).requireAuthorized();
+        sessionService.get(session).requireAuthorized();
         return userService.exist(username);
     }
 }
