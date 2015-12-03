@@ -15,7 +15,7 @@ public class UserService {
     private UserDao userDao;
 
     public boolean exist(String username) {
-        return userDao.findById(username) != null;
+        return userDao.exist(username);
     }
 
     public List<ArUser> findAll() {

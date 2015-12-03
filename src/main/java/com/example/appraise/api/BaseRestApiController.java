@@ -18,11 +18,13 @@ public abstract class BaseRestApiController {
         return renderErrorMsg(e.getError(), e.getMsg());
     }
 
+    /*
     @ExceptionHandler(Exception.class)
     public Object onUnknownError(Exception e, HttpServletResponse resp) {
         resp.setStatus(500);
         return renderErrorMsg(500, "unknown error");
     }
+    */
 
     private Object renderErrorMsg(int error, String msg) {
         HashMap<String, Object> resp = new HashMap<>();

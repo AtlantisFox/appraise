@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/api/user")
-public class User extends BaseRestApiController {
+public class UserRestController extends BaseRestApiController {
     @Autowired
     private UserSecureService userSecureService;
 
