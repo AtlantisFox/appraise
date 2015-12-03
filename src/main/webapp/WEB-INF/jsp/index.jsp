@@ -39,7 +39,7 @@
       <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
           <li><a href="index"><i class="fa fa-dashboard fa-fw"></i> 主页</a></li>
-          <li><a href="indexes.html"><i class="fa fa-unlock"></i> 指标管理</a></li>
+          <li><a href="indexes"><i class="fa fa-unlock"></i> 指标管理</a></li>
           <li><a href="users"><i class="fa fa-users"></i> 用户管理</a></li>
           <li><a href="plans.html"><i class="fa fa-gears"></i> 方案管理</a></li>
         </ul>
@@ -121,7 +121,7 @@
               </div>
             </div>
           </div>
-          <a href="indexes.html">
+          <a href="indexes">
             <div class="panel-footer">
               <span class="pull-left">View Details</span>
               <span class="pull-right">
