@@ -35,7 +35,7 @@ public class User extends BaseRestApiController {
      * @throws RestApiException 如果登陆失败，则抛出异常。
      */
     @RequestMapping(value = "auth")
-    public ArUser Auth(@RequestParam("username") String username,
+    public ArUser auth(@RequestParam("username") String username,
                        @RequestParam("password") String password,
                        HttpSession session) throws RestApiException {
         // 记录下最后一次尝试登陆的用户名
@@ -58,7 +58,7 @@ public class User extends BaseRestApiController {
      * @throws RestApiException 如果创建失败，则抛出异常。
      */
     @RequestMapping(value = "create")
-    public ArUser Create(ArUserSecure user, HttpSession session) throws RestApiException {
+    public ArUser create(ArUserSecure user, HttpSession session) throws RestApiException {
         // taken from: http://stackoverflow.com/a/16942352
 
         // 必须管理员
@@ -83,7 +83,7 @@ public class User extends BaseRestApiController {
      * @throws RestApiException 如果更新失败，则抛出异常。
      */
     @RequestMapping(value = "update")
-    public ArUser Modify(ArUserSecure newUser, HttpSession session) throws RestApiException {
+    public ArUser modify(ArUserSecure newUser, HttpSession session) throws RestApiException {
         ArUserSecure oldUser;
 
         // 首先，用户必须登陆。
@@ -112,7 +112,7 @@ public class User extends BaseRestApiController {
      * @throws RestApiException 如果删除失败，则抛出异常。
      */
     @RequestMapping(value = "delete")
-    public ArUser Delete(@RequestParam("username") String username,
+    public ArUser delete(@RequestParam("username") String username,
                          HttpSession session) throws RestApiException {
         // 首先，只有管理员有权限删除用户。
         SessionChecker sessionChecker = new SessionChecker(session);
@@ -134,7 +134,7 @@ public class User extends BaseRestApiController {
      * @throws RestApiException 如果没有登陆，则抛出异常。
      */
     @RequestMapping(value = "list")
-    public List List(HttpSession session) throws RestApiException {
+    public List list(HttpSession session) throws RestApiException {
         // 判断当前登录用户
         SessionChecker sessionChecker = new SessionChecker(session);
         sessionChecker.requireAuthorized();
@@ -157,7 +157,7 @@ public class User extends BaseRestApiController {
      * @throws RestApiException 如果没有登陆，则抛出异常。
      */
     @RequestMapping(value = "exist")
-    public boolean Exist(@RequestParam("username") String username, HttpSession session) throws RestApiException {
+    public boolean exist(@RequestParam("username") String username, HttpSession session) throws RestApiException {
         new SessionChecker(session).requireAuthorized();
         return userService.exist(username);
     }
