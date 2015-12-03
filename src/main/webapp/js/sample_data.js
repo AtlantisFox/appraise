@@ -58,25 +58,23 @@ define([], function () {
             remark: 'index remark 1',
             point: 5,
             appraiser: 'user 1',
-            appraisee: 'user 10',
-            used: false
+            appraisee: 'user 10'
         }, {
             id: 13,
             name: 'index 2',
             remark: 'index remark 2',
             point: 10,
             appraiser: 'user 2',
-            appraisee: 'user 8',
-            used: true
+            appraisee: 'user 8'
         }, {
             id: 14,
             name: 'index 3',
             remark: 'index remark 3',
             point: 15,
             appraiser: 'user 3',
-            appraisee: '',
-            used: true
+            appraisee: ''
         }],
+        usedIndexes: [13, 14],
 
         plans: [{
             id: 1,

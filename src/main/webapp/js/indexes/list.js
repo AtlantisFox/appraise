@@ -20,8 +20,12 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                 }
             }
 
-            function renderDeleteButton(data, type, row, meta) {
-                return '<button type="button" class="btn btn-warning listitem-delete"><i class="fa fa-times"></i> 删除</button>';
+            function renderDeleteButton(used, type, row, meta) {
+                if (!used) {
+                    return '<button type="button" class="btn btn-warning listitem-delete"><i class="fa fa-times"></i> 删除</button>';
+                } else {
+                    return '<button type="button" class="btn btn-warning" disabled>已使用</button>'
+                }
             }
 
             table = container.DataTable({
@@ -48,6 +52,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                         className: 'listitem-operation',
                         orderable: false,
                         searchable: false,
+                        data: 'used',
                         render: renderDeleteButton
                     }
                 ],
@@ -101,7 +106,8 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
             require(['sample_data'], function (data) {
                 var sample = {
                     users: data.users,
-                    indexes: data.indexes
+                    indexes: data.indexes,
+                    usedIndexes: data.usedIndexes
                 };
                 load_succ_cb(sample);
             });
@@ -111,6 +117,9 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
             users = {};
             $.each(data.users, function (_, user) {
                 users[user.username] = user.remark;
+            });
+            $.each(data.indexes, function (_, index) {
+                index.used = data.usedIndexes.indexOf(index.id) !== -1;
             });
             table.rows().remove();
             table.rows.add(data.indexes);

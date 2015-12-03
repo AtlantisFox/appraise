@@ -1,43 +1,34 @@
-define(['jquery', 'bootstrap'], function ($) {
+define(['jquery', '../common/confirm'], function ($, ConfirmDlg) {
 
     function IndexDel(container) {
         var that = this;
         // private
-        container = $(container);
-        var name = container.find('.field-name');
-        var remark = container.find('.field-remark');
-        var btn_del = container.find('.deldlg-btn');
-        var del_status = container.find('.dlg-status');
+        var modal = new ConfirmDlg(container);
         var deleting_obj = null;
         var callback = null;
 
-        function _init() {
-            btn_del.on('click', delete_clicked);
-        }
-
         function delete_clicked() {
-            del_status.text('正在删除...').show();
+            modal.setStatus('正在删除...');
             // TODO: ajax del
             setTimeout(delete_ajax_cb, 1000);
         }
 
         function delete_ajax_cb(data) {
-            container.modal('hide');
+            modal.hide();
             if (callback) {
-                callback(deleting_obj)
+                callback(data)
             }
         }
 
         this.del = function (cb, index) {
-            name.text(index.name);
-            remark.text(index.remark);
             deleting_obj = index;
             callback = cb;
-            del_status.hide();
-            container.modal();
+            modal.modal({
+                fields: ['name', 'remark'],
+                data: index,
+                confirm_cb: delete_clicked
+            });
         };
-
-        _init();
     }
 
     return IndexDel;
