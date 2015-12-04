@@ -19,14 +19,4 @@ public class IndexDao extends BaseDao<ArIndex> {
         query.setMaxResults(1);
         return query.list().size() != 0;
     }
-
-    public boolean exist(ArIndex entity) {
-        ArIndex tmp = findById(entity.getId());
-        if (tmp != null) {
-            getSession().evict(tmp);
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

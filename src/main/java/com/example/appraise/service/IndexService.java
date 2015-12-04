@@ -37,7 +37,7 @@ public class IndexService {
     }
 
     public ArIndex update(ArIndex entity) throws RestApiException {
-        if (!indexDao.exist(entity))
+        if (!indexDao.exist(entity.getId()))
             throw RestApiException.onInvalidParam("index does not exist");
         if (indexDao.isUsed(entity.getId()))
             throw RestApiException.onInvalidParam("index is referenced, thus cannot be modified");

@@ -49,4 +49,14 @@ public abstract class BaseDao<T> {
     public List<T> findAll() {
         return this.getSession().createCriteria(this.clazz).list();
     }
+
+    public boolean exist(Serializable id) {
+        T tmp = findById(id);
+        if (tmp != null) {
+            getSession().evict(tmp);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
