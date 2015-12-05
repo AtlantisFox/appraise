@@ -8,46 +8,46 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
         var indexes = {};
 
         function _init() {
-            function renderName(data, type, row, meta) {
-                return indexes[data].name || '';
+            function renderName(indexId, type, row, meta) {
+                return indexes[indexId].name || '';
             }
 
-            function renderRemark(data, type, row, meta) {
-                return indexes[data].remark || '';
+            function renderRemark(indexId, type, row, meta) {
+                return indexes[indexId].remark || '';
             }
 
-            function renderAppraiser(data, type, row, meta) {
-                var user = users[indexes[data].appraiser] || {};
+            function renderAppraiser(indexId, type, row, meta) {
+                var user = users[indexes[indexId].appraiser] || {};
                 return user.remark || '';
             }
 
-            function renderAppraisee(data, type, row, meta) {
-                var user = users[indexes[data].appraisee] || {};
+            function renderAppraisee(indexId, type, row, meta) {
+                var user = users[indexes[indexId].appraisee] || {};
                 return user.remark || '';
             }
 
-            function renderModifyButton(data, type, row, meta) {
+            function renderModifyButton(indexId, type, row, meta) {
                 return '<button type="button" class="btn btn-info listitem-modify"><i class="fa fa-check"></i> 修改</button>';
             }
 
-            function renderDeleteButton(data, type, row, meta) {
+            function renderDeleteButton(indexId, type, row, meta) {
                 return '<button type="button" class="btn btn-warning listitem-delete"><i class="fa fa-times"></i> 删除</button>';
             }
 
             table = container.DataTable({
                 columns: [{
-                    data: 'id',
-                    render: renderName,
+                    data: 'indexId',
+                    render: renderName
                 }, {
                     data: 'weight'
                 }, {
-                    data: 'id',
+                    data: 'indexId',
                     render: renderRemark
                 }, {
-                    data: 'id',
+                    data: 'indexId',
                     render: renderAppraiser
                 }, {
-                    data: 'id',
+                    data: 'indexId',
                     render: renderAppraisee
                 }, {
                     className: 'listitem-operation',
@@ -66,20 +66,23 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                 .html('<button type="button" class="btn btn-success listitem-add"><i class="fa fa-plus"></i> 导入指标</button>')
                 .select('button.listitem-add')
                 .click(function () {
-                    detail.create(add_index_cb);
+                    detail.create(modify_index_cb);
                 });
 
             container.on('click', 'td button.listitem-modify', function () {
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);
                 var data = row.data();
-                detail.modify(modify_index_cb, data);
+                detail.modify(modify_index_cb, data, row);
             });
 
             container.on('click', 'td button.listitem-delete', function () {
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);
                 var data = row.data();
+                console.log(row);
+                table.row(row).remove();
+                table.draw();
                 // del_form.del(delete_index_cb, data);
             });
         }
@@ -94,23 +97,14 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
             return list;
         }
 
-        function add_index_cb(index) {
-            var row = table.row.add(index);
-            table.draw();
-        }
-
-        function modify_index_cb(index) {
-            var row = table.row(function (idx, data, node) {
-                return (data.id === index.id);
-            })
-            row.data(index);
-            table.draw();
-        }
-
-        function delete_index_cb(index) {
-            var row = table.row(function (idx, data, node) {
-                return (data.id === index.id);
-            }).remove();
+        function modify_index_cb(index, row) {
+            if (typeof row === 'undefined') {
+                // insert
+                table.row.add(index);
+            } else {
+                // update
+                table.row(row).data(index);
+            }
             table.draw();
         }
 
@@ -136,7 +130,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
 
         this.serialize = function () {
             // TODO: test
-            return table.rows().data();
+            return table.data().toArray();
         };
 
         _init();

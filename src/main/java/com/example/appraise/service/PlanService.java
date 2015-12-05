@@ -77,4 +77,11 @@ public class PlanService {
     public List<ArPlan> list() {
         return planDao.findAll();
     }
+
+    public ArPlanPackage findById(int planId) {
+        ArPlanPackage pack = new ArPlanPackage();
+        pack.setMeta(planDao.findById(planId));
+        pack.setIndexes(planIndexDao.findByPlan(planId));
+        return pack;
+    }
 }

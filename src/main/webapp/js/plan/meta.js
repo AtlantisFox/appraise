@@ -24,7 +24,11 @@ define(['jquery', 'bootstrap-datetimepicker'], function ($) {
         };
 
         this.serialize = function () {
-            return {};
+            return {
+                name: name.val(),
+                remark: remark.val(),
+                deadline: ddl.date().unix()
+            };
         };
 
         _init();

@@ -8,7 +8,7 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
 
         function _init() {
             function renderDateTime(date, type, row, meta) {
-                return moment(date).format('YYYY-MM-DD HH:mm');
+                return moment.unix(date).format('YYYY-MM-DD HH:mm');
             }
 
             function renderModifyResetButton(status, type, row, meta) {
@@ -68,7 +68,7 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 dom: '<"listitem-toolbar">frtip'
             });
             container.parent().find('div.listitem-toolbar')
-                .html('<a href="plan.html" class="btn btn-success listitem-add"><i class="fa fa-plus"></i> 添加新计划</a>')
+                .html('<a href="plan" class="btn btn-success listitem-add"><i class="fa fa-plus"></i> 添加新计划</a>')
                 .select('button.listitem-add');
 
             container.on('click', 'td button.listitem-modify', function () {
@@ -76,6 +76,7 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 var row = table.row(tr);
                 var data = row.data();
                 // detail.modify(modify_plan_cb, data);
+                window.location = 'plan#' + data.id;
             });
 
             container.on('click', 'td button.listitem-delete', function () {

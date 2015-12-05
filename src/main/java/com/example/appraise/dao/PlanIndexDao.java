@@ -22,4 +22,11 @@ public class PlanIndexDao extends BaseDao<ArPlanIndex> {
             session.save(index);
         }
     }
+
+    @SuppressWarnings("unchecked")
+    public List<ArPlanIndex> findByPlan(int planId) {
+        Query query = getSession().createQuery("from ArPlanIndex where planId=:id");
+        query.setParameter("id", planId);
+        return query.list();
+    }
 }
