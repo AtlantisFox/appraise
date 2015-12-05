@@ -14,6 +14,7 @@ define(['jquery', 'bootstrap'], function ($) {
         var btn_save = container.find('.index-edit-save');
         var users = {};
         var indexes = {};
+        var row;
         var callback;
         var mode_create;
 
@@ -60,14 +61,14 @@ define(['jquery', 'bootstrap'], function ($) {
         function save_clicked() {
             saving_status.text('正在保存...').show();
             // TODO: ajax save
-            setTimeout(save_ajax_cb, 1000);
+            setTimeout(save_ajax_cb, 1);
         }
 
         function save_ajax_cb(data) {
             container.modal('hide');
             // TODO: return response data
             if (callback)
-                callback(that.serialize());
+                callback(that.serialize(), row);
         }
 
         this.create = function (cb) {
@@ -75,10 +76,11 @@ define(['jquery', 'bootstrap'], function ($) {
             mode_create = true;
         };
 
-        this.modify = function (cb, index) {
+        this.modify = function (cb, index, row_id) {
             mode_create = false;
-            name.val(index.id);
+            name.val(index.indexId);
             weight.val(index.weight || 0);
+            row = row_id;
             index_changed();
 
             callback = cb;
@@ -88,7 +90,7 @@ define(['jquery', 'bootstrap'], function ($) {
 
         this.serialize = function () {
             return {
-                id: parseInt(name.val()),
+                indexId: parseInt(name.val()),
                 weight: weight.val()
             };
         };

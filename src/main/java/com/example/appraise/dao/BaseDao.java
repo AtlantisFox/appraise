@@ -38,6 +38,10 @@ public abstract class BaseDao<T> {
         this.getSession().update(entity);
     }
 
+    public void saveOrUpdate(T entity) {
+        this.getSession().saveOrUpdate(entity);
+    }
+
     public void delete(T entity) {
         this.getSession().delete(entity);
     }

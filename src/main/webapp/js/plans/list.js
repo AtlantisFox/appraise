@@ -8,27 +8,31 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
 
         function _init() {
             function renderDateTime(date, type, row, meta) {
-                return moment(date).format('YYYY-MM-DD HH:mm');
+                return moment.unix(date).format('YYYY-MM-DD HH:mm');
             }
 
-            function renderModifyResetButton(started, type, row, meta) {
-                if (!started) {
+            function renderModifyResetButton(status, type, row, meta) {
+                if (status === 0) {
                     return '<button type="button" class="btn btn-info listitem-modify"><i class="fa fa-check"></i> 修改</button>';
                 } else {
                     return '<button type="button" class="btn btn-warning listitem-reset"><i class="fa fa-undo"></i> 重置</button>'
                 }
             }
 
-            function renderExecuteHistoryButton(started, type, row, meta) {
-                if (!started) {
+            function renderExecuteHistoryButton(status, type, row, meta) {
+                if (status === 0) {
                     return '<button type="button" class="btn btn-success listitem-modify"><i class="fa fa-play"></i> 执行</button>';
                 } else {
                     return '<button type="button" class="btn btn-primary listitem-reset"><i class="fa fa-list"></i> 结果</button>'
                 }
             }
 
-            function renderDeleteButton(data, type, row, meta) {
-                return '<button type="button" class="btn btn-warning listitem-delete"><i class="fa fa-times"></i> 删除</button>';
+            function renderDeleteButton(status, type, row, meta) {
+                if (status === 0) {
+                    return '<button type="button" class="btn btn-warning listitem-delete"><i class="fa fa-times"></i> 删除</button>';
+                } else {
+                    return '<button type="button" class="btn btn-warning listitem-delete disabled"><i class="fa fa-times"></i> 删除</button>';
+                }
             }
 
             table = container.DataTable({
@@ -37,24 +41,24 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                     {data: 'remark'},
                     {
                         data: 'deadline',
-                        render: renderDateTime,
+                        render: renderDateTime
                     },
                     {
-                        data: 'started',
+                        data: 'status',
                         className: 'listitem-operation',
                         orderable: false,
                         searchable: false,
                         render: renderModifyResetButton
                     },
                     {
-                        data: 'started',
+                        data: 'status',
                         className: 'listitem-operation',
                         orderable: false,
                         searchable: false,
                         render: renderExecuteHistoryButton
                     },
                     {
-                        data: null,
+                        data: 'status',
                         className: 'listitem-operation',
                         orderable: false,
                         searchable: false,
@@ -64,7 +68,7 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 dom: '<"listitem-toolbar">frtip'
             });
             container.parent().find('div.listitem-toolbar')
-                .html('<a href="plan.html" class="btn btn-success listitem-add"><i class="fa fa-plus"></i> 添加新计划</a>')
+                .html('<a href="plan" class="btn btn-success listitem-add"><i class="fa fa-plus"></i> 添加新计划</a>')
                 .select('button.listitem-add');
 
             container.on('click', 'td button.listitem-modify', function () {
@@ -72,6 +76,7 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 var row = table.row(tr);
                 var data = row.data();
                 // detail.modify(modify_plan_cb, data);
+                window.location = 'plan#' + data.id;
             });
 
             container.on('click', 'td button.listitem-delete', function () {
@@ -104,10 +109,16 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
         }
 
         function load_data() {
-            // TODO: ajax request
-            require(['sample_data'], function (data) {
-                load_succ_cb(data.plans);
-            });
+            var options = {
+                url: 'api/plan/list',
+                dataType: 'json',
+                type: 'post',
+                success: load_succ_cb
+            };
+            $.ajax(options);
+            //require(['sample_data'], function (data) {
+            //    load_succ_cb(data.plans);
+            //});
         }
 
         function load_succ_cb(data) {

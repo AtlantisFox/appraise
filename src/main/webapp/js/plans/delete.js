@@ -1,43 +1,50 @@
-define(['jquery', 'bootstrap'], function ($) {
+define(['jquery', '../common/confirm'], function ($, ConfirmDlg) {
 
     function PlanDel(container) {
         var that = this;
-        // private
-        container = $(container);
-        var name = container.find('.field-name');
-        var remark = container.find('.field-remark');
-        var btn_del = container.find('.deldlg-btn');
-        var del_status = container.find('.dlg-status');
-        var deleting_obj = null;
-        var callback = null;
-
-        function _init() {
-            btn_del.on('click', delete_clicked);
-        }
+        var modal = new ConfirmDlg(container);
+        var callback;
+        var deleting_obj;
 
         function delete_clicked() {
-            del_status.text('正在删除...').show();
-            // TODO: ajax del
-            setTimeout(delete_ajax_cb, 1000);
+            modal.setStatus('正在删除...');
+            var options = {
+                url: 'api/plan/delete',
+                data: {
+                    id: deleting_obj.id
+                },
+                dataType: 'json',
+                type: 'post',
+                success: delete_ajax_cb,
+                error: delete_err_cb
+            };
+            $.ajax(options);
+            // setTimeout(delete_ajax_cb, 1000);
         }
 
-        function delete_ajax_cb(data) {
-            container.modal('hide');
+        function delete_ajax_cb() {
+            modal.hide();
             if (callback) {
-                callback(deleting_obj)
+                callback(deleting_obj);
             }
         }
 
-        this.del = function (cb, plan) {
-            name.text(plan.name);
-            remark.text(plan.remark);
-            deleting_obj = plan;
-            callback = cb;
-            del_status.hide();
-            container.modal();
-        };
+        function delete_err_cb(ajax_obj) {
+            var o = ajax_obj;
+            var txt = o.responseJSON && o.responseJSON.msg || 'unknown';
+            modal.reset();
+            modal.setStatus('错误：' + txt);
+        }
 
-        _init();
+        this.del = function (cb, plan) {
+            callback = cb;
+            deleting_obj = plan;
+            modal.modal({
+                fields: ['name', 'remark'],
+                data: plan,
+                confirm_cb: delete_clicked
+            });
+        };
     }
 
     return PlanDel;
