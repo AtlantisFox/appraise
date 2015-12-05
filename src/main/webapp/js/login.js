@@ -40,10 +40,7 @@ requirejs(['./common'], function() {
 
         function ajax_succ_cb() {
             console.log('succeed');
-            // TODO: verify window.location.pathname available on most platforms
-            var pieces = window.location.pathname.split('.');
-            pieces[0] = 'index';
-            window.location = pieces.join('.');
+            window.location = 'index';
         }
 
         function ajax_err_cb() {
