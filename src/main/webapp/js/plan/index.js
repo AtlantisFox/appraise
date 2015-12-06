@@ -3,6 +3,7 @@ define(['jquery'], function ($) {
     function PlanController(plan_id, ctrl_group, meta, list) {
         var that = this;
         var save_btn = ctrl_group.find('.dlg-btn-save');
+        var save_tooltip_timeout;
         var true_plan_id;
 
         function _init() {
@@ -80,10 +81,33 @@ define(['jquery'], function ($) {
         function on_save_succ(data) {
             save_btn.prop('disabled', false);
             true_plan_id = data.meta.id;
+            save_tooltip('保存成功');
         }
 
-        function on_save_err() {
+        function on_save_err(ajax_obj) {
             save_btn.prop('disabled', false);
+            var o = ajax_obj;
+            var txt = o.responseJSON && o.responseJSON.msg || 'unknown';
+            save_tooltip('错误：' + txt);
+        }
+
+        function save_tooltip(text) {
+            save_tooltip_close();
+            save_btn.tooltip({
+                title: text,
+                container: 'body',
+                trigger: 'manual'
+            });
+            save_btn.tooltip('show');
+            save_tooltip_timeout = setTimeout(save_tooltip_close, 5000);
+        }
+
+        function save_tooltip_close() {
+            if (save_tooltip_timeout !== null) {
+                clearTimeout(save_tooltip_timeout);
+                save_tooltip_timeout = null;
+                save_btn.tooltip('destroy');
+            }
         }
 
         _init();
