@@ -34,7 +34,8 @@
         <ul class="nav navbar-top-links navbar-right">
             <li><i class="fa fa-user fa-fw"></i> 您好：${username}</li>
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> 用户设置</a></li>
-            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
+            <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> 登出</a>
+            </li>
         </ul>
         <!-- /.navbar-top-links -->
 
