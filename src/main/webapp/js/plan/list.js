@@ -60,6 +60,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                     searchable: false,
                     render: renderDeleteButton
                 }],
+                paging: false,
                 dom: '<"listitem-toolbar">frtip'
             });
             container.parent().find('div.listitem-toolbar')
