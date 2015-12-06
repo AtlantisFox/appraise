@@ -3,6 +3,7 @@ define(['jquery'], function ($) {
     function PlanController(plan_id, ctrl_group, meta, list) {
         var that = this;
         var save_btn = ctrl_group.find('.dlg-btn-save');
+        var true_plan_id;
 
         function _init() {
             save_btn.on('click', on_save);
@@ -52,6 +53,7 @@ define(['jquery'], function ($) {
 
         function load_plan_succ(data) {
             if (data.meta === null) data.meta = {};
+            true_plan_id = data.meta.id;
             meta.set_data(data);
             list.load_plan(data);
         }
@@ -61,7 +63,7 @@ define(['jquery'], function ($) {
                 meta: meta.serialize(),
                 indexes: list.serialize()
             };
-            data.meta.id = plan_id;
+            data.meta.id = true_plan_id;
             var options = {
                 url: 'api/plan/save',
                 data: JSON.stringify(data),
@@ -77,7 +79,7 @@ define(['jquery'], function ($) {
 
         function on_save_succ(data) {
             save_btn.prop('disabled', false);
-            plan_id = data.meta.id;
+            true_plan_id = data.meta.id;
         }
 
         function on_save_err() {

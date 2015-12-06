@@ -49,7 +49,7 @@
                     </li>
                     <li><a href="plans"><i class="fa fa-gears"></i> 方案管理</a>
                     </li>
-                </ul>
+        </ul>
             </div>
             <!-- /.sidebar-collapse -->
         </div>
@@ -60,7 +60,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <span class="pull-left">方案管理</span>
+          <span class="pull-left">
+            <a href="plans" class="btn btn-default btn-circle">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            方案管理
+          </span>
 
                     <div class="pull-right" id="dlg-control-group">
                         <button type="button"
@@ -105,7 +110,7 @@
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
               </span>
-                        </div>
+            </div>
                     </div>
                 </div>  <!-- control group: deadline -->
             </div>
@@ -197,9 +202,9 @@
                                 <div class="col-sm-9">
                                     <p class="form-control-static field-appraisee"
                                        id="index-appraisee"></p>
-                                </div>
+                </div>
                             </div>
-                        </div>
+            </div>
                     </div>  <!-- modal-body -->
                     <div class="modal-footer">
                         <button type="button"
@@ -243,13 +248,13 @@
                                 <div class="col-sm-10">
                                     <p class="form-control-static field-remark"
                                        id="plandel-remark"></p>
-                                </div>
+                </div>
                             </div>
-                        </div>
+            </div>
                     </div>  <!-- modal-body -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger deldlg-btn">
-                            删除
+                        <button type="button"
+                                class="btn btn-danger dlg-btn-confirm">删除
                         </button>
                         <button type="button" class="btn btn-default"
                                 data-dismiss="modal">取消
@@ -268,3 +273,4 @@
 </body>
 
 </html>
+
