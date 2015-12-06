@@ -59,14 +59,13 @@ define(['jquery', 'bootstrap'], function ($) {
         }
 
         function save_clicked() {
-            saving_status.text('正在保存...').show();
-            // TODO: ajax save
-            setTimeout(save_ajax_cb, 1);
+            // saving_status.text('正在保存...').show();
+            // setTimeout(save_ajax_cb, 1);
+            save_ajax_cb();
         }
 
         function save_ajax_cb(data) {
             container.modal('hide');
-            // TODO: return response data
             if (callback)
                 callback(that.serialize(), row);
         }
