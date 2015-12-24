@@ -86,14 +86,12 @@
             <div class="form-horizontal">
               <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label" for="plandel-name">名称</label>
-
                 <div class="col-sm-10">
                   <p class="form-control-static field-name" id="plandel-name"></p>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="plandel-remark">备注</label>
-
                 <div class="col-sm-10">
                   <p class="form-control-static field-remark" id="plandel-remark"></p>
                 </div>
@@ -113,8 +111,12 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/require.js" data-main="js/plans.js"></script>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="application/javascript">
+  requirejs(['./js/common'], function() {
+    requirejs(['./plans']);
+  });
+</script>
 </body>
 
 </html>
-

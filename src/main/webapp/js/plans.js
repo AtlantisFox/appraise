@@ -1,11 +1,4 @@
-requirejs(['./common'], function () {
-    requirejs.config({
-        shim: {},
-        paths: {}
-    });
-
-    requirejs(['./plans/list', './plans/delete'], function (List, DelForm) {
-        var del = new DelForm('#plan-del-dlg');
-        new List('#dataTables-plans', del);
-    });
+requirejs(['./plans/list', './plans/delete'], function (List, DelForm) {
+    var del = new DelForm('#plan-del-dlg');
+    new List('#dataTables-plans', del);
 });

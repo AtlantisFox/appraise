@@ -60,10 +60,8 @@
             方案管理
           </span>
 
-          <div class="pull-right dlg-control-group">
-            <button type="button" class="btn btn-primary dlg-btn-save"
-                    id="dlg-btn-save"><i class="fa fa-arrow-down"></i> 保存
-            </button>
+          <div class="pull-right dlg-control-group" id="dlg-control-group">
+            <button type="button" class="btn btn-primary dlg-btn-save" id="dlg-btn-save"><i class="fa fa-arrow-down"></i> 保存</button>
           </div>
           <span class="clearfix"></span>
         </h1>
@@ -75,21 +73,18 @@
       <div class="col-lg-12 form-horizontal" id="plan-meta">
         <div class="form-group col-md-6 col-lg-4">
           <label class="col-sm-3 control-label" for="plan-name">名称</label>
-
           <div class="col-sm-9">
             <input type="text" class="form-control field-name" id="plan-name">
           </div>
         </div>  <!-- control group: name -->
         <div class="form-group col-md-6 col-lg-4">
           <label class="col-sm-3 control-label" for="plan-remark">备注</label>
-
-          <div class="col-sm-9">
+		  <div class="col-sm-9">
             <input type="text" class="form-control field-remark" id="plan-remark">
           </div>
         </div>  <!-- control group: remark -->
         <div class="form-group col-md-6 col-lg-4">
           <label class="col-sm-3 control-label" for="plan-deadline">截止日期</label>
-
           <div class="col-sm-9">
             <div class="input-group date field-deadline">
               <input type="text" class="form-control" id="plan-deadline" required/>
@@ -100,7 +95,7 @@
           </div>
         </div>  <!-- control group: deadline -->
       </div>
-    </div>  <!-- plan metadata -->
+	</div>  <!-- plan metadata -->
 
     <div class="row">
       <div class="col-lg-12">
@@ -122,8 +117,7 @@
       </div>
     </div>  <!-- Table content -->
 
-    <div class="modal fade" id="index-edit-dlg" tabindex="-1" role="dialog" aria-labelledby="index-edit-label"
-         aria-hidden="true">
+    <div class="modal fade" id="index-edit-dlg" tabindex="-1" role="dialog" aria-labelledby="index-edit-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -134,7 +128,6 @@
             <div class="form-horizontal">
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-name">名称</label>
-
                 <div class="col-sm-9">
                   <select class="form-control field-name" id="index-name"></select>
                 </div>
@@ -147,28 +140,24 @@
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-remark">指标备注</label>
-
                 <div class="col-sm-9">
                   <p class="form-control-static field-remark" id="index-remark"></p>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-point">分值</label>
-
                 <div class="col-sm-4">
                   <p class="form-control-static field-point" id="index-point"></p>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-appraiser">考核部门</label>
-
                 <div class="col-sm-9">
                   <p class="form-control-static field-appraiser" id="index-appraiser"></p>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-appraisee">被考核部门</label>
-
                 <div class="col-sm-9">
                   <p class="form-control-static field-appraisee" id="index-appraisee"></p>
                 </div>
@@ -212,8 +201,7 @@
             </div>
           </div>  <!-- modal-body -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger dlg-btn-confirm">删除
-            </button>
+            <button type="button" class="btn btn-danger dlg-btn-confirm">删除</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             <div class="dlg-status"></div>
           </div>
@@ -224,8 +212,12 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/require.js" data-main="js/plan.js"></script>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="application/javascript">
+  requirejs(['./js/common'], function() {
+    requirejs(['./plan']);
+  });
+</script>
 </body>
 
 </html>
-

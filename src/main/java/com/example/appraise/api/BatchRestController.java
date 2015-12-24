@@ -17,10 +17,11 @@ public class BatchRestController extends BaseRestApiController {
     private IndexRestController indexCtrl;
 
     @RequestMapping(value = "/api/batch")
-    public HashMap request(@RequestParam(value = "users", required = false) boolean users,
-                           @RequestParam(value = "indexes", required = false) boolean indexes,
-                           @RequestParam(value = "usedIndexes", required = false) boolean usedIndexes,
-                           HttpSession session) throws RestApiException {
+    public HashMap request(
+            @RequestParam(value = "users", required = false) boolean users,
+            @RequestParam(value = "indexes", required = false) boolean indexes,
+            @RequestParam(value = "usedIndexes", required = false) boolean usedIndexes,
+            HttpSession session) throws RestApiException {
         HashMap<String, Object> result = new HashMap<>();
         if (users)
             result.put("users", userCtrl.list(session));

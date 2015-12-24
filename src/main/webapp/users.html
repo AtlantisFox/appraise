@@ -182,8 +182,12 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/require.js" data-main="js/users.js"></script>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="application/javascript">
+  requirejs(['./js/common'], function() {
+    requirejs(['./users']);
+  });
+</script>
 </body>
 
 </html>
-

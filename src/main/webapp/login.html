@@ -20,14 +20,14 @@
             <h3 class="panel-title">Please Sign In</h3>
           </div>
           <div class="panel-body" id="form-login">
-            <div class="alert alert-warning detail-banner">登陆失败，请重试。</div>
-            <div role="form">
+            <div class="alert alert-warning default-hidden dlg-banner-fail">登陆失败，请重试。</div>
+            <form role="form">
               <fieldset>
                 <div class="form-group">
-                  <input class="form-control detail-username" placeholder="Username" name="username" type="text" autofocus>
+                  <input class="form-control field-username" placeholder="Username" name="username" type="text" autofocus>
                 </div>
                 <div class="form-group">
-                  <input class="form-control detail-password" placeholder="Password" name="password" type="password" value="">
+                  <input class="form-control field-password" placeholder="Password" name="password" type="password" value="">
                 </div>
                 <!--
                 <div class="checkbox">
@@ -37,16 +37,21 @@
                 </div>
                 -->
                 <!-- Change this to a button or input when using this as a form -->
-                <button class="btn btn-lg btn-success btn-block detail-login">Login</button>
+                <button class="btn btn-lg btn-success btn-block dlg-btn-login">Login</button>
               </fieldset>
-            </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <script type="text/javascript" src="js/require.js" data-main="js/login.js"></script>
+  <script type="text/javascript" src="js/require.js"></script>
+  <script type="application/javascript">
+    requirejs(['./js/common'], function() {
+      requirejs(['./login']);
+    });
+  </script>
 
 </body>
 

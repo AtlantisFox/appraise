@@ -87,35 +87,30 @@
             <div class="form-horizontal">
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-name">名称</label>
-
                 <div class="col-sm-9">
                   <input type="text" class="form-control field-name" id="index-name">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-remark">备注</label>
-
                 <div class="col-sm-9">
                   <input type="text" class="form-control field-remark" id="index-remark">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-point">分值</label>
-
                 <div class="col-sm-4">
                   <input type="number" class="form-control field-point" id="index-point">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-appraiser">考核部门</label>
-
                 <div class="col-sm-9">
                   <select class="form-control field-appraiser" id="index-appraiser"></select>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="index-appraisee">被考核部门</label>
-
                 <div class="col-sm-9">
                   <select class="form-control field-appraisee" id="index-appraisee"></select>
                 </div>
@@ -143,14 +138,12 @@
             <div class="form-horizontal">
               <div class="form-group has-feedback">
                 <label class="col-sm-2 control-label" for="deldlg-name">指标</label>
-
                 <div class="col-sm-10">
                   <p class="form-control-static field-name" id="deldlg-name"></p>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="deldlg-remark">备注</label>
-
                 <div class="col-sm-10">
                   <p class="form-control-static field-remark" id="deldlg-remark"></p>
                 </div>
@@ -158,8 +151,7 @@
             </div>
           </div>  <!-- modal-body -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger dlg-btn-confirm">删除
-            </button>
+            <button type="button" class="btn btn-danger dlg-btn-confirm">删除</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             <div class="dlg-status"></div>
           </div>
@@ -169,8 +161,12 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/require.js" data-main="js/indexes.js"></script>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="application/javascript">
+  requirejs(['./js/common'], function() {
+    requirejs(['./indexes']);
+  });
+</script>
 </body>
 
 </html>
-
