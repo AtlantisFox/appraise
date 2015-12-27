@@ -39,6 +39,7 @@
       <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
           <li><a href="index"><i class="fa fa-dashboard fa-fw"></i> 主页</a></li>
+          <li><a href="appr_plans"><i class="fa fa-bolt"></i> 进行评分</a></li>
           <li><a href="indexes"><i class="fa fa-unlock"></i> 指标管理</a></li>
           <li><a href="users"><i class="fa fa-users"></i> 用户管理</a></li>
           <li><a href="plans"><i class="fa fa-gears"></i> 方案管理</a></li>

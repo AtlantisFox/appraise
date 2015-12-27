@@ -14,14 +14,17 @@ public class SummaryDao extends BaseDao<ArSummary> {
         return query.executeUpdate();
     }
 
-    public void evict(ArSummary obj) {
-        getSession().evict(obj);
-    }
-
     @SuppressWarnings("unchecked")
     public List<ArSummary> findByUnfinished(String appraiser) {
         Query query = getSession().createQuery("from ArSummary where finished=0 and user=:user");
         query.setParameter("user", appraiser);
         return query.list();
+    }
+
+    public boolean isPlanFinished(int planId) {
+        Query query = getSession().createQuery("from ArSummary where finished=0 and plan=:id");
+        query.setParameter("id", planId);
+        query.setMaxResults(1);
+        return query.list().size() == 0;
     }
 }

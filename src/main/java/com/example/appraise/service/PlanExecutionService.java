@@ -133,12 +133,12 @@ public class PlanExecutionService {
             if (!index.getAppraiser().equals(appraiser))
                 continue;
             // 对于当前方案的每一个指标
-            ArResultPK resultPK = new ArResultPK();
-            resultPK.setPlanId(planId);
-            resultPK.setIndexId(indexId);
             if (index.getAppraisee().isEmpty()) {
                 // 共性指标，要给所有用户全部考评后才算完成
                 for (ArUser user : userList) {
+                    ArResultPK resultPK = new ArResultPK();
+                    resultPK.setPlanId(planId);
+                    resultPK.setIndexId(indexId);
                     resultPK.setAppraisee(user.getUsername());
                     if (resultDao.findById(resultPK) == null) {
                         finished = false;
@@ -147,6 +147,9 @@ public class PlanExecutionService {
                 }
             } else {
                 // 特性指标，只要给特定用户考评就算完成
+                ArResultPK resultPK = new ArResultPK();
+                resultPK.setPlanId(planId);
+                resultPK.setIndexId(indexId);
                 resultPK.setAppraisee(index.getAppraisee());
                 if (resultDao.findById(resultPK) == null) {
                     finished = false;
@@ -205,6 +208,12 @@ public class PlanExecutionService {
             summary.setPointCommon(score_common);
             summary.setPointUnique(score_unique);
             summaryDao.update(summary);
+        }
+
+        // 判断所有用户已经完成打分
+        if (summaryDao.isPlanFinished(planId)) {
+            plan.setStatus(2);
+            planDao.update(plan);
         }
         return finished;
     }

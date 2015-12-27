@@ -14,6 +14,14 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                     {data: 'unfinished', render: tableUnfinishedLabelRender}
                 ]
             });
+            container.on('click', 'td .button-appraise', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var data = row.data();
+                // detail.modify(modify_plan_cb, data);
+                window.location = 'appr_plan#' + data.id;
+            });
+
             load_data();
         }
 
@@ -23,9 +31,9 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
 
         function tableAppraiseViewButtonRender(data, type, row, meta) {
             if (data == 1) {
-                return '<button type="button" class="btn btn-success">考评</button>';
+                return '<button type="button" class="btn btn-success button-appraise">考评</button>';
             } else {
-                return '<button type="button" class="btn btn-info">查看</button>'
+                return '<button type="button" class="btn btn-info button-view">查看</button>'
             }
         }
 

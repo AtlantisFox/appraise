@@ -14,7 +14,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                 columns: [
                     {data: 'username'},
                     {data: 'remark'},
-                    {data: null, render: tableAppraiseBtnRender}
+                    {data: 'count', render: tableAppraiseBtnRender}
                 ]
             });
             container.on('click', 'td button.listitem-appraise', function() {
@@ -26,11 +26,15 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
             load_basic_data();
         }
 
-        function tableAppraiseBtnRender() {
-            return '<button type="button" class="btn btn-info listitem-appraise">评分</button>'
+        function tableAppraiseBtnRender(count) {
+            if (count > 0) {
+                return '<button type="button" class="btn btn-info listitem-appraise">评分</button>';
+            } else {
+                return '无考评指标';
+            }
         }
 
-        function onAppraiseUser(user) {
+        function indexForUser(user) {
             var user_indexes = [];
             $.each(plan_indexes, function(_, planIndex) {
                 var id = planIndex.indexId;
@@ -40,6 +44,11 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
                     user_indexes.push(index);
                 }
             });
+            return user_indexes;
+        }
+
+        function onAppraiseUser(user) {
+            var user_indexes = indexForUser(user);
             appraise_dlg.modal(user, plan_id, user_indexes, results[user.username]);
         }
 
@@ -83,12 +92,16 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
             });
             me = data.me;
             load_plan_data();
-            table.rows.add(users);
-            table.draw();
         }
 
         function plan_ajax_succ_cb(data) {
             plan_indexes = data;
+            $.each(users, function(_, user) {
+                var indexes = indexForUser(user);
+                user.count = indexes.length;
+            });
+            table.rows.add(users);
+            table.draw();
         }
 
         function result_ajax_succ_cb(data) {

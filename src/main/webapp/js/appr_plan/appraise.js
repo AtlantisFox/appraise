@@ -76,7 +76,7 @@ define(['jquery', 'bootstrap'], function($) {
                 var dom_input = $('<input type="number" class="form-control">');
                 dom_input.data('index', index.id);
                 var dom_helper = $('<p class="help-block"/>');
-                dom_helper.text('满分：' + index.point + ' 分。' + index.remark);
+                dom_helper.text('满分 ' + index.point + ' 分。' + index.remark);
                 var dom_div = $('<div class="col-sm-10"/>');
                 dom_div.append(dom_input);
                 dom_div.append(dom_helper);

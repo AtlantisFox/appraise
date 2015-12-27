@@ -31,17 +31,18 @@
         <ul class="nav navbar-top-links navbar-right">
             <li><i class="fa fa-user fa-fw"></i> 您好：${username}</li>
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> 用户设置</a></li>
-            <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
+            <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
         </ul>
         <!-- /.navbar-top-links -->
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i> 主页</a></li>
-                    <li><a href="indexes.html"><i class="fa fa-unlock"></i> 指标管理</a></li>
-                    <li><a href="users.html"><i class="fa fa-users"></i> 用户管理</a></li>
-                    <li><a href="plans.html"><i class="fa fa-gears"></i> 方案管理</a></li>
+                    <li><a href="index"><i class="fa fa-dashboard fa-fw"></i> 主页</a></li>
+                    <li><a href="appr_plans"><i class="fa fa-bolt"></i> 进行评分</a></li>
+                    <li><a href="indexes"><i class="fa fa-unlock"></i> 指标管理</a></li>
+                    <li><a href="users"><i class="fa fa-users"></i> 用户管理</a></li>
+                    <li><a href="plans"><i class="fa fa-gears"></i> 方案管理</a></li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
