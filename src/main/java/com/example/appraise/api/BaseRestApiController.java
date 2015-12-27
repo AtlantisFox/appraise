@@ -1,5 +1,6 @@
 package com.example.appraise.api;
 
+import com.example.appraise.model.RestApiException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,7 @@ public abstract class BaseRestApiController {
     }
 
     /*
+    // 处理所有异常，调试时可以注释掉，以返回可读性较高的错误提示页面
     @ExceptionHandler(Exception.class)
     public Object onUnknownError(Exception e, HttpServletResponse resp) {
         resp.setStatus(500);

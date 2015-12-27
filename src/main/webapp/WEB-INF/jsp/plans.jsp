@@ -75,8 +75,7 @@
     </div>  <!-- Table content -->
 
     <!-- modal dialog for deleting plan -->
-    <div class="modal fade" id="plan-del-dlg" tabindex="-1" role="dialog" aria-labelledby="plan-del-label"
-         aria-hidden="true">
+    <div class="modal fade" id="plan-del-dlg" tabindex="-1" role="dialog" aria-labelledby="plan-del-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -85,7 +84,7 @@
           </div>  <!-- modal-header -->
           <div class="modal-body">
             <div class="form-horizontal">
-              <div class="form-group has-feedback">
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="plandel-name">名称</label>
                 <div class="col-sm-10">
                   <p class="form-control-static field-name" id="plandel-name"></p>
@@ -100,14 +99,79 @@
             </div>
           </div>  <!-- modal-body -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger dlg-btn-confirm">删除
-            </button>
+            <button type="button" class="btn btn-danger dlg-btn-confirm">删除</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             <div class="dlg-status"></div>
           </div>
         </div>
       </div>
     </div>  <!-- modal dialog for deleting plan -->
+
+    <!-- modal dialog for executing plan -->
+    <div class="modal fade" id="plan-exe-dlg" tabindex="-1" role="dialog" aria-labelledby="plan-exe-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="plan-exe-label">确认执行？</h4>
+          </div>  <!-- modal-header -->
+          <div class="modal-body">
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="plan-exe-name">名称</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static field-name" id="plan-exe-name"></p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="plan-exe-remark">备注</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static field-remark" id="plan-exe-remark"></p>
+                </div>
+              </div>
+            </div>
+          </div>  <!-- modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary dlg-btn-confirm">执行</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <div class="dlg-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>  <!-- modal dialog for executing plan -->
+
+    <!-- modal dialog for resetting plan -->
+    <div class="modal fade" id="plan-reset-dlg" tabindex="-1" role="dialog" aria-labelledby="plan-reset-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="plan-reset-label">确认重置？</h4>
+          </div>  <!-- modal-header -->
+          <div class="modal-body">
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="plan-reset-name">名称</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static field-name" id="plan-reset-name"></p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="plan-reset-remark">备注</label>
+                <div class="col-sm-10">
+                  <p class="form-control-static field-remark" id="plan-reset-remark"></p>
+                </div>
+              </div>
+            </div>
+          </div>  <!-- modal-body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger dlg-btn-confirm">重置</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <div class="dlg-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>  <!-- modal dialog for resetting plan -->
 
   </div>
 </div>

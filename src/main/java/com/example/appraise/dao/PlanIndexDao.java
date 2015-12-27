@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class PlanIndexDao extends BaseDao<ArPlanIndex> {
-    public int removePlan(int planId) {
+    public int deletePlan(int planId) {
         Query query = getSession().createQuery("delete ArPlanIndex where planId=:id");
         query.setParameter("id", planId);
         return query.executeUpdate();

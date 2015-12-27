@@ -1,6 +1,7 @@
 package com.example.appraise.service;
 
-import com.example.appraise.api.RestApiException;
+import com.example.appraise.model.ArUser;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.model.ArUserSecure;
 
 public class SessionChecker {
@@ -12,6 +13,10 @@ public class SessionChecker {
 
     public String getUsername() {
         return user != null ? user.getUsername() : null;
+    }
+
+    public ArUser getUser() {
+        return user != null ? user.toArUser() : null;
     }
 
     public boolean hasAuthorized() {

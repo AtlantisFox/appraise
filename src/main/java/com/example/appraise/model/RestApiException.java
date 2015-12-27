@@ -1,4 +1,4 @@
-package com.example.appraise.api;
+package com.example.appraise.model;
 
 /**
  * 存储调用API的错误信息
@@ -26,6 +26,10 @@ public class RestApiException extends Exception {
 
     public static RestApiException onUnprivileged() {
         return new RestApiException(403, "unprivileged");
+    }
+
+    public static RestApiException onSystemErr(String desc) {
+        return new RestApiException(500, desc);
     }
 
     public int getError() {

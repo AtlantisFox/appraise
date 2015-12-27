@@ -1,6 +1,6 @@
 package com.example.appraise.service;
 
-import com.example.appraise.api.RestApiException;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.dao.IndexDao;
 import com.example.appraise.dao.PlanDao;
 import com.example.appraise.dao.PlanIndexDao;
@@ -43,11 +43,11 @@ public class PlanService {
                 throw RestApiException.onInvalidParam("'index' entity cannot be null/invalid index");
             int indexId = index.getIndexId();
             if (set.contains(indexId))
-                throw RestApiException.onInvalidParam("duplicated index: " + indexId);
+                throw RestApiException.onInvalidParam("duplicated index, id=" + indexId);
             if (!indexDao.exist(indexId))
-                throw RestApiException.onInvalidParam("index does not exist: " + indexId);
+                throw RestApiException.onInvalidParam("index does not exist, id=" + indexId);
             if (index.getWeight() <= 0)
-                throw RestApiException.onInvalidParam("index weight out of range: " + indexId);
+                throw RestApiException.onInvalidParam("index weight out of range, id=" + indexId);
             set.add(indexId);
         }
     }
@@ -58,7 +58,7 @@ public class PlanService {
         if (planDao.isUsed(plan.getId()))
             throw RestApiException.onInvalidParam("plan is being used");
         planDao.saveOrUpdate(plan);
-        planIndexDao.removePlan(plan.getId());
+        planIndexDao.deletePlan(plan.getId());
         planIndexDao.saveBuck(pack.getIndexes(), plan.getId());
         return pack;
     }
@@ -71,7 +71,7 @@ public class PlanService {
         if (planDao.isUsed(plan.getId()))
             throw RestApiException.onInvalidParam("plan is being used");
         planDao.delete(plan);
-        planIndexDao.removePlan(planId);
+        planIndexDao.deletePlan(planId);
     }
 
     public List<ArPlan> list() {

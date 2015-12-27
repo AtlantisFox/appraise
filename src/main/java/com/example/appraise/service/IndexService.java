@@ -1,6 +1,6 @@
 package com.example.appraise.service;
 
-import com.example.appraise.api.RestApiException;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.dao.IndexDao;
 import com.example.appraise.dao.UserDao;
 import com.example.appraise.model.ArIndex;

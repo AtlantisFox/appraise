@@ -1,6 +1,6 @@
 package com.example.appraise.service;
 
-import com.example.appraise.api.RestApiException;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.dao.UserSecureDao;
 import com.example.appraise.model.ArUserSecure;
 import org.springframework.beans.factory.annotation.Autowired;

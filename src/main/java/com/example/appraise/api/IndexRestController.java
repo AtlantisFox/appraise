@@ -1,6 +1,7 @@
 package com.example.appraise.api;
 
 import com.example.appraise.model.ArIndex;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.service.IndexService;
 import com.example.appraise.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;

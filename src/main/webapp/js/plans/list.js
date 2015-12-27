@@ -1,6 +1,6 @@
 define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function ($, moment) {
 
-    function PlansList(container, del_form) {
+    function PlansList(container, del_form, plan_execute, plan_reset) {
         var that = this;
         container = $(container);
         var table;
@@ -21,9 +21,9 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
 
             function renderExecuteHistoryButton(status, type, row, meta) {
                 if (status === 0) {
-                    return '<button type="button" class="btn btn-success listitem-modify"><i class="fa fa-play"></i> 执行</button>';
+                    return '<button type="button" class="btn btn-success listitem-execute"><i class="fa fa-play"></i> 执行</button>';
                 } else {
-                    return '<button type="button" class="btn btn-primary listitem-reset"><i class="fa fa-list"></i> 结果</button>'
+                    return '<button type="button" class="btn btn-primary listitem-history"><i class="fa fa-list"></i> 结果</button>'
                 }
             }
 
@@ -84,6 +84,20 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 var row = table.row(tr);
                 var data = row.data();
                 del_form.del(delete_plan_cb, data);
+            });
+
+            container.on('click', 'td button.listitem-execute', function() {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var data = row.data();
+                plan_execute.execute(modify_plan_cb, data);
+            });
+
+            container.on('click', 'td button.listitem-reset', function() {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var data = row.data();
+                plan_reset.reset(modify_plan_cb, data);
             });
 
             load_data();

@@ -2,6 +2,7 @@ package com.example.appraise.api;
 
 import com.example.appraise.model.ArPlan;
 import com.example.appraise.model.ArPlanPackage;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.service.PlanService;
 import com.example.appraise.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;

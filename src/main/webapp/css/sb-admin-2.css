@@ -373,3 +373,10 @@ div.dataTables_info {
 .default-hidden {
     display: none;
 }
+
+h1,
+h3.panel-title,
+.btn-lg {
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    /*font-family: Kaiti, sans-serif;*/
+}

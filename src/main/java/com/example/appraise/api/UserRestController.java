@@ -2,6 +2,7 @@ package com.example.appraise.api;
 
 import com.example.appraise.model.ArUser;
 import com.example.appraise.model.ArUserSecure;
+import com.example.appraise.model.RestApiException;
 import com.example.appraise.service.SessionChecker;
 import com.example.appraise.service.SessionService;
 import com.example.appraise.service.UserSecureService;
@@ -51,6 +52,13 @@ public class UserRestController extends BaseRestApiController {
             return user.toArUser();
         }
         throw RestApiException.onUnauthorized();
+    }
+
+    @RequestMapping(value = "me")
+    public ArUser me(HttpSession session) throws RestApiException {
+        SessionChecker checker = sessionService.get(session);
+        checker.requireAuthorized();
+        return checker.getUser();
     }
 
     /**
