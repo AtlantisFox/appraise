@@ -93,6 +93,14 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 plan_execute.execute(modify_plan_cb, data);
             });
 
+            container.on('click', 'td button.listitem-history', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var data = row.data();
+                // detail.modify(modify_plan_cb, data);
+                window.location = 'appr_result#' + data.id;
+            });
+
             container.on('click', 'td button.listitem-reset', function() {
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);

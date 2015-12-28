@@ -67,4 +67,18 @@ public class AppraiseRestController extends BaseRestApiController {
         checker.requireAuthorized();
         return planExecutionService.getAppraiserResult(planId, checker.getUsername());
     }
+
+    @RequestMapping(value = "summary")
+    public List<ArSummary> summary(int planId, HttpSession session) throws RestApiException {
+        SessionChecker checker = sessionService.get(session);
+        checker.requireAuthorized();
+        return planExecutionService.getSummary(planId, checker.hasAppraisalAdmin());
+    }
+
+    @RequestMapping(value = "result")
+    public List<ArResult> result(int planId, HttpSession session) throws  RestApiException {
+        SessionChecker checker = sessionService.get(session);
+        checker.requireAuthorized();
+        return planExecutionService.getResult(planId, checker.hasAppraisalAdmin());
+    }
 }

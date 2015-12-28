@@ -27,4 +27,11 @@ public class SummaryDao extends BaseDao<ArSummary> {
         query.setMaxResults(1);
         return query.list().size() == 0;
     }
+
+    @SuppressWarnings("unchecked")
+    public List<ArSummary> findByPlan(int planId) {
+        Query query = getSession().createQuery("from ArSummary  where plan=:id");
+        query.setParameter("id", planId);
+        return query.list();
+    }
 }

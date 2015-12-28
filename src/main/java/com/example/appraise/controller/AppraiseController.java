@@ -27,4 +27,9 @@ public class AppraiseController {
     public String apprPlan(HttpSession session) {
         return requireAuth(session, "appr_plan");
     }
+
+    @RequestMapping("/appr_result")
+    public String apprResult(HttpSession session) {
+        return requireAuth(session, "appr_result");
+    }
 }

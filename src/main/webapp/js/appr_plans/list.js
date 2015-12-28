@@ -21,6 +21,13 @@ define(['jquery', 'moment', 'bootstrap', 'datatables.net', 'datatables.net-bs'],
                 // detail.modify(modify_plan_cb, data);
                 window.location = 'appr_plan#' + data.id;
             });
+            container.on('click', 'td .button-view', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var data = row.data();
+                // detail.modify(modify_plan_cb, data);
+                window.location = 'appr_result#' + data.id;
+            });
 
             load_data();
         }

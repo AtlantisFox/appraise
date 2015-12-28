@@ -263,4 +263,26 @@ public class PlanExecutionService {
             throw RestApiException.onInvalidParam("plan does not exist");
         return planIndexDao.findByPlan(planId);
     }
+
+    @Transactional(readOnly = true)
+    public List<ArSummary> getSummary(int planId, boolean isAppraisalAdmin) throws RestApiException {
+        ArPlan plan = planDao.findById(planId);
+        if (plan == null)
+            throw RestApiException.onInvalidParam("plan does not exist");
+        if (plan.getStatus() != 2)
+            if (!isAppraisalAdmin)
+                throw RestApiException.onUnprivileged();
+        return summaryDao.findByPlan(planId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ArResult> getResult(int planId, boolean isAppraisalAdmin) throws RestApiException {
+        ArPlan plan = planDao.findById(planId);
+        if (plan == null)
+            throw RestApiException.onInvalidParam("plan does not exist");
+        if (plan.getStatus() != 2)
+            if (!isAppraisalAdmin)
+                throw RestApiException.onUnprivileged();
+        return resultDao.findByPlan(planId);
+    }
 }
