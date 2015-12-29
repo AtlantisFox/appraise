@@ -1,9 +1,9 @@
 package com.example.appraise.service;
 
-import com.example.appraise.model.RestApiException;
 import com.example.appraise.dao.IndexDao;
 import com.example.appraise.dao.UserDao;
 import com.example.appraise.model.ArIndex;
+import com.example.appraise.model.RestApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

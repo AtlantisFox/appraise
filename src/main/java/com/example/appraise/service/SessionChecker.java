@@ -1,9 +1,12 @@
 package com.example.appraise.service;
 
 import com.example.appraise.model.ArUser;
-import com.example.appraise.model.RestApiException;
 import com.example.appraise.model.ArUserSecure;
+import com.example.appraise.model.RestApiException;
 
+/**
+ * 根据一个用户对象，提供一系列函数，用于判断用户是否满足一定权限要求。
+ */
 public class SessionChecker {
     private final ArUserSecure user;
 

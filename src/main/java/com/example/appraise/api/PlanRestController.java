@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * 制定考评方案的接口
+ */
 @RestController
 @RequestMapping(value = "/api/plan")
 public class PlanRestController extends BaseRestApiController {

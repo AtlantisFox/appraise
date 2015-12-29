@@ -1,8 +1,8 @@
 package com.example.appraise.service;
 
-import com.example.appraise.model.RestApiException;
 import com.example.appraise.dao.UserSecureDao;
 import com.example.appraise.model.ArUserSecure;
+import com.example.appraise.model.RestApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;

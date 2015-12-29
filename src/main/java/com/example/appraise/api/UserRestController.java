@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * 负责处理/api/user相关的RestApi。
+ * 用户认证、管理的接口
  */
 @RestController
 @RequestMapping(value = "/api/user")

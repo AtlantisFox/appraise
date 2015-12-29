@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * 制定考评指标的接口
+ */
 @RestController
 @RequestMapping(value = "/api/index")
 public class IndexRestController extends BaseRestApiController {

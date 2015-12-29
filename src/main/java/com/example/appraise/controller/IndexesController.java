@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 public class IndexesController {
     @Autowired
     private SessionService sessionService;
+
     @RequestMapping("/indexes")
     public ModelAndView Indexes(HttpSession session) {
         SessionChecker sessionChecker = sessionService.get(session);

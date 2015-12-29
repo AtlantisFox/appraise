@@ -16,6 +16,7 @@ public class LoginController {
 
     @Autowired
     private SessionService sessionService;
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView Login(HttpSession session) {
         if (!sessionService.get(session).hasAuthorized()) {

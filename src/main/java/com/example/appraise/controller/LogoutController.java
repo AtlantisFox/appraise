@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutController {
     @Autowired
     private SessionService sessionService;
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView Logout(HttpSession session) {
         sessionService.logout(session);

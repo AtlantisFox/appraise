@@ -32,7 +32,6 @@ public class DatabaseConfig {
         sessionFactory.setDataSource(dataSource());
         // 指定需要扫描的包，通过类(模型)的注解(annotation)，使类(模型)与数据库绑定。
         sessionFactory.setPackagesToScan("com.example.appraise.model");
-        // sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
     }
@@ -56,17 +55,4 @@ public class DatabaseConfig {
         txManager.setSessionFactory(sessionFactory);
         return txManager;
     }
-
-    /*
-    Properties hibernateProperties() {
-        // using hibernate.properties instead
-        return new Properties() {
-            {
-                // setProperty("hibernate.hbm2ddl.auto", "true");
-                setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-                setProperty("hibernate.show_sql", "true");
-            }
-        };
-    }
-    */
 }
