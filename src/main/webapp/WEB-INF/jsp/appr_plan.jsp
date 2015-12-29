@@ -53,7 +53,12 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">考评管理</h1>
+                <h1 class="page-header">
+                    <a href="appr_plans" class="btn btn-default btn-circle">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    考评管理
+                </h1>
             </div>
         </div>
         <div class="row">

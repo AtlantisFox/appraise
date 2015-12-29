@@ -2,7 +2,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
     function UserList(container, plan_id, appraise_dlg) {
         var that = this;
         container = $(container);
-        var users = [];
+        var users = {};
         var plan_indexes = null;
         var summary = null;
         var indexes = {};
@@ -12,7 +12,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
         function _init() {
             table = container.DataTable({
                 columns: [
-                    {data: 'user'},
+                    {data: 'user_remark'},
                     {data: 'pointCommon'},
                     {data: 'pointUnique'},
                     {data: 'count', render: tableAppraiseBtnRender}
@@ -49,7 +49,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
 
         function onAppraiseUser(summary_row) {
             var user_indexes = indexForUser(summary_row.user);
-            appraise_dlg.modal(summary_row.user, plan_id, user_indexes, results[summary_row.user]);
+            appraise_dlg.modal(users, plan_id, user_indexes, results[summary_row.user]);
         }
 
         function load_basic_data() {
@@ -91,14 +91,14 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
         }
 
         function basic_ajax_succ_cb(data) {
-            users = data.users;
+            users = {};
             $.each(data.users, function (_, user) {
                 results[user.username] = {};
+                users[user.username] = user;
             });
             $.each(data.indexes, function (_, index) {
                 indexes[index.id] = index;
             });
-            me = data.me;
             load_plan_data();
         }
 
@@ -118,6 +118,7 @@ define(['jquery', 'bootstrap', 'datatables.net', 'datatables.net-bs'], function 
 
             $.each(summary, function (_, sum) {
                 sum.count = indexForUser(sum.user).length;
+                sum.user_remark = users[sum.user].remark || '';
             });
             table.rows().remove();
             table.rows.add(summary);

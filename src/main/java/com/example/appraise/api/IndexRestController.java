@@ -40,7 +40,7 @@ public class IndexRestController extends BaseRestApiController {
 
     @RequestMapping(value = "list")
     public List<ArIndex> list(HttpSession session) throws RestApiException {
-        sessionService.get(session).requireAppraisalAdmin();
+        sessionService.get(session).requireAuthorized();
         return indexService.findAll();
     }
 
