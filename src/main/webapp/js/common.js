@@ -1,3 +1,4 @@
+// 配置 http://requirejs.org/docs/api.html
 requirejs.config({
     baseUrl: './js',
     waitSeconds: 30,
