@@ -14,7 +14,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
 
-        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <spring.version>4.2.3.RELEASE</spring.version>
     </properties>
 
